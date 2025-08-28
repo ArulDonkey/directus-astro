@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+import directus from "../lib/directus";
+import { readItems } from "@directus/sdk";
+
+const benefit = await directus.request(readItems("benefit"));
+const benefitLogo = benefit.map((b) => ({
+  ...b,
+  logoUrl: `http://localhost:8055/assets/${b.logoBenefit}`,
+}));
+---
+
+<section id="benefit">
+  <div class="bg-sky-700 py-16">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto px-6">
+      {
+        benefitLogo.map((b) => (
+          <li class="flex flex-col items-center text-center text-white">
+            <img src={b.logoUrl} alt="Logo Benefit" class="w-16 h-16 mb-6" />
+            <h1 class="text-xl font-bold mb-3">{b.judul}</h1>
+            <p class="text-sm text-white mt-3">{b.desc}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

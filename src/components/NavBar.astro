@@ -1,0 +1,35 @@
+---
+import { readItems } from '@directus/sdk';
+import directus from '../lib/directus';
+import '../styles/global.css';
+
+const programs = await directus.request(readItems("programs", {
+  fields: ["judul", "slug"],
+}))
+---
+
+
+<nav class="bg-sky-700 text-white shadow-md">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-2xl font-bold">Latihan Ngoding</a>
+
+    <div class="flex space-x-6 items-center">
+      <a href="/" class="hover:text-gray-200">Home</a>
+      <a href="#benefit" class="hover:text-gray-200">Benefit</a>
+      <div class="relative group">
+        <button class="hover:text-gray-200">Program</button>
+        <div class="absolute hidden group-hover:block bg-white text-gray-800 rounded-lg shadow-lg mt-2 py-2 w-48 z-50">
+          {
+            programs.map((b)=> (
+              <a href={`/programs/${b.slug}`} class="block px-4 py-2 hover:bg-gray-100">{b.judul}</a>
+            ))
+          }
+        </div>
+      </div>
+      <a href="#visi" class="hover:text-gray-200">Visi</a>
+      <a href="#kurikulum" class="hover:text-gray-200">Kurikulum</a>
+      <a href="#bidang" class="hover:text-gray-200">Bidang Pekerjaan</a>
+      <a href="#fasilitas" class="hover:text-gray-200">Fasilitas</a>
+    </div>
+  </div>
+</nav>

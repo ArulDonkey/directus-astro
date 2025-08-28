@@ -1,0 +1,40 @@
+---
+import "../../styles/global.css";
+import "tailwindcss";
+import directus from "../../lib/directus";
+import { readItems } from "@directus/sdk";
+import NavBar from "../../components/NavBar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const programs = await directus.request(
+    readItems("programs", {
+      fields: ["slug", "judul", "desc", "background", "hero"],
+    })
+  );
+  return programs.map((programs) => ({
+    params: { slug: programs.slug },
+    props: programs,
+  }));
+}
+
+export const prerender = true;
+const programs = Astro.props;
+---
+
+<Layout>
+  <article class="max-w-3xl mx-auto p-12 space-y-6">
+    <img
+      src={`http://localhost:8055/assets/${programs.background}`}
+      alt="Gambar Program"
+      width="500"
+    />
+    <h1>{programs.judul}</h1>
+    <p set:html={programs.desc} />
+    <img
+      src=`http://localhost:8055/assets/${programs.hero}`
+      alt="Kegiatan Program"
+      width="300"
+    />
+  </article>
+</Layout>

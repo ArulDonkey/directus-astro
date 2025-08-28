@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import directus from "../lib/directus";
+import { readItems } from "@directus/sdk";
+
+const fasilitas = await directus.request(readItems("fasilitas"));
+---
+
+<section id="fasilitas">
+  <div class="py-16">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto px-6"
+    >
+      {
+        fasilitas.map((b) => (
+          <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col">
+            <h1 class="text-xl font-semibold text-gray-800 mb-3">{b.judul}</h1>
+            <p class="text-gray-600 leading-relaxed">{b.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

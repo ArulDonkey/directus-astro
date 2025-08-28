@@ -21,6 +21,14 @@ type Bidang = {
     logoBidang: File;
 }
 
+type Programs = {
+    judul: string;
+    desc: string;
+    hero: File;
+    background:File;
+    slug: string;
+}
+
 type Fasilitas = {
     judul: string;
     desc: string;
@@ -28,10 +36,11 @@ type Fasilitas = {
 
 type Schema = {
     benefit: Benefit[];
-    visi: Visi[];
-    kurikulum: Kurikulum[];
+    visi: Visi;
+    kurikulum: Kurikulum;
     bidang: Bidang[];
     fasilitas: Fasilitas[];
+    programs: Programs[];
 }
 
 

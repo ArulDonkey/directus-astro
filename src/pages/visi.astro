@@ -1,0 +1,14 @@
+---
+import "../styles/global.css";
+import directus from "../lib/directus";
+import { readSingleton } from "@directus/sdk";
+
+const visi = await directus.request(readSingleton("visi"));
+---
+
+<section id="visi">
+  <div class="flex flex-col items-center justify-center text-center py-16 px-6">
+    <h1 class="text-3xl font-bold mb-4">{visi.judul}</h1>
+    <p class="max-w-2xl text-lg text-gray-700">{visi.desc}</p>
+  </div>
+</section>

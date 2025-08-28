@@ -1,0 +1,18 @@
+---
+import "../styles/global.css";
+import directus from "../lib/directus";
+import { readSingleton } from "@directus/sdk";
+
+const kurikulum = await directus.request(readSingleton("kurikulum"));
+---
+
+<section id="kurikulum">
+  <div
+    class="max-w-6xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-20 items-center"
+  >
+    <h1 class="text-4xl font-bold text-right md:pl-12">{kurikulum.judul}</h1>
+    <p class="text-lg text-gray-700 leading-relaxed md:pr-12">
+      {kurikulum.desc}
+    </p>
+  </div>
+</section>

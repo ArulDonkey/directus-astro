@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+import directus from "../lib/directus";
+import { readItems } from "@directus/sdk";
+
+const bidang = await directus.request(readItems("bidang"));
+const logoBidang = bidang.map((b) => ({
+  ...b,
+  logoBidang: `http://localhost:8055/assets/${b.logoBidang}`,
+}));
+---
+
+<section id="bidang">
+  <div class="bg-white py-20">
+    <ul class="grid grid-cols-2 md:grid-cols-5 gap-12 max-w-6xl mx-auto px-6">
+      {
+        logoBidang.map((b) => (
+          <li class="flex flex-col items-center text-center">
+            <img src={b.logoBidang} alt="Logo Bidang" class="w-16 h-16 mb-5" />
+            <h1 class="text-lg font-semibold text-gray-800">{b.judul}</h1>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
