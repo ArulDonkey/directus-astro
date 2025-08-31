@@ -3,13 +3,18 @@ import "../../styles/global.css";
 import "tailwindcss";
 import directus from "../../lib/directus";
 import { readItems } from "@directus/sdk";
-import NavBar from "../../components/NavBar.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const programs = await directus.request(
     readItems("programs", {
-      fields: ["slug", "judul", "desc", "background", "hero"],
+      fields: [
+        "slug",
+        "judul",
+        "desc",
+        "background",
+        "hero",
+      ],
     })
   );
   return programs.map((programs) => ({

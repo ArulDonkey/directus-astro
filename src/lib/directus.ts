@@ -22,12 +22,20 @@ type Bidang = {
 }
 
 type Programs = {
+    id: string;
     judul: string;
     desc: string;
     hero: File;
     background:File;
     slug: string;
+    course: Course;
 }
+
+type Course = {
+  id: string;
+  judulKursus: string;
+  program: Programs[]; // one-to-many relasinya ke programs
+};
 
 type Fasilitas = {
     judul: string;
@@ -41,6 +49,7 @@ type Schema = {
     bidang: Bidang[];
     fasilitas: Fasilitas[];
     programs: Programs[];
+    course: Course[];
 }
 
 
