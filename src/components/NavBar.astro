@@ -4,7 +4,7 @@ import directus from '../lib/directus';
 import '../styles/global.css';
 
 const programs = await directus.request(readItems("programs", {
-  fields: ["judul", "slug"],
+  fields: ["title", "slug"],
 }))
 ---
 
@@ -21,7 +21,7 @@ const programs = await directus.request(readItems("programs", {
         <div class="absolute hidden group-hover:block bg-white text-gray-800 rounded-lg shadow-lg mt-2 py-2 w-48 z-50">
           {
             programs.map((b)=> (
-              <a href={`/programs/${b.slug}`} class="block px-4 py-2 hover:bg-gray-100">{b.judul}</a>
+              <a href={`/programs/${b.slug}`} class="block px-4 py-2 hover:bg-gray-100">{b.title}</a>
             ))
           }
         </div>

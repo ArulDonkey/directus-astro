@@ -9,7 +9,7 @@ const courses = await directus.request(
       "judulKursus",
       "id",
       {
-        program: ["id", "judul", "slug", "hero"],
+        program: ["id", "title", "slug", "images"],
       },
     ],
   })
@@ -27,15 +27,15 @@ const courses = await directus.request(
             href={`/programs/${p.slug}`} 
             class="bg-white border rounded-xl shadow-md hover:shadow-xl transition w-full max-w-sm overflow-hidden flex flex-col"
           >
-            {p.hero && (
+            {p.images && (
               <img 
-                src={`http://localhost:8055/assets/${p.hero}`} 
-                alt={p.judul} 
+                src={`http://localhost:8055/assets/${p.images}`} 
+                alt={p.title} 
                 class="w-full h-40 object-cover"
               />
             )}
             <div class="p-4 text-center">
-              <h3 class="text-lg font-semibold text-gray-800">{p.judul}</h3>
+              <h3 class="text-lg font-semibold text-gray-800">{p.title}</h3>
               <p class="text-sm text-sky-600 mt-2 font-medium">{c.judulKursus}</p>
             </div>
           </a>

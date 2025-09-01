@@ -10,10 +10,10 @@ export async function getStaticPaths() {
     readItems("programs", {
       fields: [
         "slug",
-        "judul",
+        "title",
         "desc",
         "background",
-        "hero",
+        "images",
       ],
     })
   );
@@ -34,10 +34,10 @@ const programs = Astro.props;
       alt="Gambar Program"
       width="500"
     />
-    <h1>{programs.judul}</h1>
+    <h1>{programs.title}</h1>
     <p set:html={programs.desc} />
     <img
-      src=`http://localhost:8055/assets/${programs.hero}`
+      src=`http://localhost:8055/assets/${programs.images}`
       alt="Kegiatan Program"
       width="300"
     />

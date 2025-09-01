@@ -23,9 +23,9 @@ type Bidang = {
 
 type Programs = {
     id: string;
-    judul: string;
+    title: string;
     desc: string;
-    hero: File;
+    images: File;
     background:File;
     slug: string;
     course: Course;
